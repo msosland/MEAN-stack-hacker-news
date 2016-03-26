@@ -10,7 +10,7 @@
   </head>
   <body ng-app="newsApp">
     <ui-view></ui-view>
-    <script type="text/ng-template" id="home.html">
+    <script type="text/ng-template" id="/home.html">
       <div>
         <h1>Its The News</h1>
       </div>
@@ -23,6 +23,9 @@
         <span ng-hide="post.link">
           {{post.title}}
         </span>
+        <span>
+          <a href="#/posts/{{$index}}">Comments</a>
+        </span>
       </div>
       <form ng-submit="addPost()">
         <h3>Add A New Post</h3>
@@ -30,6 +33,30 @@
         <br>
         <input type="text" placeholder="Link" ng-model="link"></input>
         <br>
+        <button type="submit">Post</button>
+      </form>
+    </script>
+    <script type="text/ng-template" id="/posts.html">
+      <div>
+        <h3>
+          <a ng-show="post.link" href="{{post.link}}">
+            {{post.title}}
+          </a>
+          <span ng-hide="post.link">
+            {{post.title}}
+          </span>
+        </h3>
+      </div>
+      <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
+        <span ng-click="incrementUpvotes(comment)"></span>
+        {{comment.upvotes}} - by {{comment.author}}
+        <span>{{comment.body}}</span>
+      </div>
+      <form ng-submit="addComment()">
+        <h3>Add a new comment</h3>
+        <div>
+          <input type="text" placeholder="Comment" ng-model="body"></input>
+        </div>
         <button type="submit">Post</button>
       </form>
     </script>

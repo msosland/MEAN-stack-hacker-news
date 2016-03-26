@@ -7,11 +7,9 @@ angular.module('newsApp', ['ui.router'])
     $stateProvider
       .state('home', {
         url: '/home',
-        templateUrl: 'home.html',
+        templateUrl: '/home.html',
         controller: 'MainCtrl'
-      });
-
-    $stateProvider
+      })
       .state('posts', {
         url: '/posts/{id}',
         templateUrl: '/posts.html',
