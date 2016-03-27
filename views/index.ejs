@@ -49,7 +49,7 @@
         </h3>
       </div>
       <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
-        <span ng-click="incrementUpvotes(comment)"></span>
+        <span ng-click="incrementUpvotes(comment)">^</span>
         {{comment.upvotes}} - by {{comment.author}}
         <span>{{comment.body}}</span>
       </div>
