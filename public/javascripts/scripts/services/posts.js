@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newsApp')
-.factory('posts', ['$http', function($http) {
+.factory('posts', ['$http', 'auth', function($http, auth) {
   var o = {
     posts: []
   };
@@ -19,7 +19,7 @@ angular.module('newsApp')
   };
 
   o.create = function(post) {
-    return $http.post('/posts', post {
+    return $http.post('/posts', post, {
       headers: {Authorization: 'Bearer '+auth.getToken()}
     }).success(function(data){
       o.posts.push(data);
