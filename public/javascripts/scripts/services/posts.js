@@ -3,13 +3,7 @@
 angular.module('newsApp')
 .factory('posts', ['$http', function($http) {
   var o = {
-    posts: [
-      // {title: 'post 1', upvotes: 5, comments: []},
-      // {title: 'post 2', upvotes: 2, comments: []},
-      // {title: 'post 3', upvotes: 15, comments: []},
-      // {title: 'post 4', upvotes: 9, comments: []},
-      // {title: 'post 5', upvotes: 4, comments: []}
-    ]
+    posts: []
   };
 
   o.getAll = function() {
@@ -25,26 +19,33 @@ angular.module('newsApp')
   };
 
   o.create = function(post) {
-    return $http.post('/posts', post).success(function(data){
+    return $http.post('/posts', post {
+      headers: {Authorization: 'Bearer '+auth.getToken()}
+    }).success(function(data){
       o.posts.push(data);
     });
   };
 
   o.upvote = function(post) {
-    return $http.put('/posts/' + post._id + '/upvote').success(function(data){
+    return $http.put('/posts/' + post._id + '/upvote', null, {
+      headers: {Authorization: 'Bearer '+auth.getToken()}
+    }).success(function(data){
       post.upvotes += 1;
     });
   };
 
   o.addComment = function(id, comment) {
-    return $http.post('/posts/' + id + '/comments', comment);
+    return $http.post('/posts/' + id + '/comments', comment, {
+      headers: {Authorization: 'Bearer '+auth.getToken()}
+    });
   };
 
   o.upvoteComment = function(post, comment) {
-    return $http.put('/posts/' + post._id + '/comments/' + comment._id + '/upvote')
-      .success(function(data){
+    return $http.put('/posts/' + post._id + '/comments/' + comment._id + '/upvote', null, {
+      headers: {Authorization: 'Bearer '+auth.getToken()}
+    }).success(function(data){
         comment.upvotes += 1;
-      });
+    });
   };
 
   return o;
