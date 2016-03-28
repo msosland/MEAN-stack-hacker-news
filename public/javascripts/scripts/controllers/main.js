@@ -4,7 +4,8 @@ angular.module('newsApp')
 .controller('MainCtrl', [
   '$scope',
   'posts',
-  function($scope, posts){
+  'auth',
+  function($scope, posts, auth){
     $scope.posts = posts.posts;
 
     $scope.addPost = function(){
@@ -19,5 +20,7 @@ angular.module('newsApp')
 
     $scope.incrementUpvotes = function(post) {
       posts.upvote(post);
-    }
+    };
+
+    $scope.isLoggedIn = auth.isLoggedIn;
   }]);

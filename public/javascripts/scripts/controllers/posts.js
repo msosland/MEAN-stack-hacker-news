@@ -3,7 +3,8 @@ angular.module('newsApp')
   '$scope',
   'posts',
   'post',
-  function($scope, posts, post){
+  'auth',
+  function($scope, posts, post, auth){
     $scope.post = post;
 
     $scope.addComment = function() {
@@ -19,6 +20,8 @@ angular.module('newsApp')
 
     $scope.incrementUpvotes = function(comment){
       posts.upvoteComment(post, comment);
-    }
+    };
+
+    $scope.isLoggedIn = auth.isLoggedIn;
 
   }]);

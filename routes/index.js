@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var jwt = ('express-jwt');
+var jwt = require('express-jwt');
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
 /* GET home page. */
