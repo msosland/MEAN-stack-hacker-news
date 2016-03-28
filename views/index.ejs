@@ -11,6 +11,14 @@
     <script src="/javascripts/scripts/services/posts.js"></script>
   </head>
   <body ng-app="newsApp">
+    <nav ng-controller="NavCtrl">
+      <ul>
+        <li ng-show="isLoggedIn()"><a>{{currentUser()}}</a></li>
+        <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
+        <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
+        <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
+      </ul>
+    </nav>
     <ui-view></ui-view>
     <script type="text/ng-template" id="/home.html">
       <div>
